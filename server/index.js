@@ -12,9 +12,11 @@ app.get('/ping', function(req, res) {
   return res.send('pong');
 });
 
-app.get('/api/crew', function(req, res) {
+// TODO: remove static data 
+app.get('/api/static-crew', function(req, res) {
   return res.json( crewList );
 });
+
 
 app.get('/api/*', function(req, res) {
   return res.status(404).send('This is not the path youre looking for...');

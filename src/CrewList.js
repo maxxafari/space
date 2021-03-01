@@ -9,30 +9,34 @@ function CrewList() {
     // this useEffect will run once
     // similar to componentDidMount()
     useEffect(() => {
-      fetch("/api/crew")
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setCrew(result);
-            console.log("CREW",crew)
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-    }, [])
+      try{
+        fetch("/api/static-crew")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              setIsLoaded(true);
+              setCrew(result);
+              console.log("CREW",crew)
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              setIsLoaded(true);
+              setError(error);
+            }
+          )
+      } catch(error){
+        setIsLoaded(true);
+        setError(error);
+      }
+    }, [crew])
   
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <pre style={{color: 'red'}}>Error: {error.message}</pre>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      console.log('crew',crew)
       return (
         <div>
             <ul className="crew">
@@ -46,9 +50,6 @@ function CrewList() {
                 </li>
             ))}
             </ul>
-            { error && 
-                <pre>{error}</pre>
-            }
         </div>
       );
     }

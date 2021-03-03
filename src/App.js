@@ -1,13 +1,18 @@
 import './App.css';
-import CrewList from './CrewList';
+import { Router, Link } from "@reach/router"
+import CrewList from './pages/CrewList';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Space crew!
+        Big header!
       </header>
-      <CrewList />
+        <Router>
+          <Home path="/" />
+          <CrewList path="crew" />
+        </Router>
     </div>
   );
 }

@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'LabGrotesqueMono';
+  font-weight: normal;
+  font-display: block;
+  src: url('LabGrotesqueMono-Regular.eot'); /* IE9 Compat Modes */
+  src: url('LabGrotesqueMono-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('LabGrotesqueMono-Regular.woff') format('woff') /* Pretty Modern Browsers */
+}
